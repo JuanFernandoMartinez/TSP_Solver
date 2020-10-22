@@ -68,7 +68,7 @@ public class ClarkeAndWright implements Solver {
 		this.tourNums = nodes.length - 1;
 
 		Node[] route = algorithm();
-		double cost = calculateRouteCost(route);
+		double cost = CostCalculator.getInstance().calculateRouteCost(route, distMatrix);
 		
 		return new Solution(route, cost);
 	}
@@ -297,37 +297,5 @@ public class ClarkeAndWright implements Solver {
 
 	}
 	
-	/*
-	 * Calculates the cost of the tour
-	 * 
-	 * @return double  the cost of the tour
-	 */
-	private double calculateRouteCost(Node[] nodes) {
-		
-		double cost = 0;
-		for(int i=0; i<nodes.length-1; i++) {
-			
-			cost += distMatrix[nodes[i].getId()][nodes[i+1].getId()];
-			
-		}
-		
-		// Adds the cost from the last node of the tour to the initial node of the tour
-		cost += distMatrix[nodes[nodes.length-1].getId()][nodes[0].getId()];
-		
-		return cost;
-	}
-	
-	private void printMatrix(double[][] m) {
-		
-		System.out.println();
-		for(int i=0; i<m.length; i++) {
-			for(int j=0; j<m[0].length; j++) {
-				System.out.print(m[i][j]+ " ");
-			}
-			System.out.println();
-		}
-		System.out.println();
-		
-	}
 
 }

@@ -48,28 +48,9 @@ public class Sweep implements Solver {
 		this.distMatrix = model.getDistMatrix();
 
 		calculateRoute();
-		cost = calculateRouteCost();
-
+		cost = CostCalculator.getInstance().calculateRouteCost(nodes, distMatrix);
+		
 		return new Solution(nodes, cost);
-	}
-
-	/*
-	 * Calculates the cost of the tour
-	 * 
-	 * @return double the cost of the tour
-	 */
-	private double calculateRouteCost() {
-		double cost = 0;
-		for (int i = 0; i < nodes.length - 1; i++) {
-
-			cost += distMatrix[nodes[i].getId()][nodes[i + 1].getId()];
-
-		}
-
-		// Adds the cost from the last node of the tour to the initial node of the tour
-		cost += distMatrix[nodes[nodes.length - 1].getId()][nodes[0].getId()];
-
-		return cost;
 	}
 
 	/*

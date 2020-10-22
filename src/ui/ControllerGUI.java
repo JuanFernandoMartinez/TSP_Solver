@@ -100,7 +100,7 @@ public class ControllerGUI {
 		Model model2=new Model(model.getNodes(),sol.getRoute());
 		
 		Opt3Move o3m = new Opt3Move();
-		Solution sol2 = o3m.Opt3Move(model2);
+		Solution sol2 = o3m.solve(model2);
 
 		cost.setText(sol2.getRouteCost() + "");
 		plotRoute(sol2);
@@ -158,16 +158,5 @@ public class ControllerGUI {
 	}
 	
 	
-	
-
-	private void printMatrix(Node[] nodes) {
-
-		for (int i = 0; i < nodes.length; i++) {
-
-			System.out.println(nodes[i].getxCoord() + " " + nodes[i].getyCoord());
-
-		}
-
-	}
 
 }
