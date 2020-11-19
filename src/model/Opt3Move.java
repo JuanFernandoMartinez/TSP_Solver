@@ -209,5 +209,5 @@ public class Opt3Move implements Solver {
 		}
 		return addLength - delLength;
 	}
-
+	
 }
