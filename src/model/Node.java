@@ -27,6 +27,11 @@ public class Node {
 	 */
 	private boolean onRoute;
 	
+	/**
+	 * this refers to the needen products in the node
+	 */
+	private int demand;
+	
 	/*
 	 * Creates an instance of the Node class
 	 * 
@@ -40,6 +45,25 @@ public class Node {
 		this.yCoord = yCoord;
 		this.onRoute = false;
 		this.angle = 0;
+		
+	}
+	
+	
+	/**
+	 * this constructor have characteristics similar to last but this manage the demand and is for VRP   
+	 * @param id The identifier of the node
+	 * @param xCoord 
+	 * @param yCoord
+	 * @param demand
+	 */
+	public Node(int id, double xCoord, double yCoord, int demand)
+	{
+		this.id = id;
+		this.xCoord = xCoord;
+		this.yCoord = yCoord;
+		this.onRoute = false;
+		this.angle = 0;
+		this.demand = demand;
 	}
 	
 	
