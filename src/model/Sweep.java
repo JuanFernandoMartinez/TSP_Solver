@@ -52,6 +52,19 @@ public class Sweep implements Solver {
 		
 		return new Solution(nodes, cost);
 	}
+	
+	public Solution solve(Model model, double x1,double y1)
+	{
+		this.nodes = model.getNodes();
+		this.cost = 0;
+		this.origin = model.getOrigin();
+		this.distMatrix = model.getDistMatrix();
+		calculateRoute(x1,y1);
+		
+		cost = CostCalculator.getInstance().calculateRouteCost(nodes, distMatrix);
+		
+		return new Solution(nodes, cost);
+	}
 
 	/*
 	 * Returns the nodes matrix;
@@ -128,6 +141,15 @@ public class Sweep implements Solver {
 	}
 	
 	
+	public void calculateRoute(double x, double y)
+	{
+	 origin = new Node(-1,x , y);
+		
+		for (int i = 0; i < nodes.length; i++) {
+			calculateAngle(i);
+		}
+		orderArray();
+	}
 	
 	public void calculateRoute() {
 

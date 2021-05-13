@@ -1,37 +1,41 @@
 package model;
 
+import java.util.Arrays;
+
 public class Model{
 		
-	/*
+	/**
 	 * Matrix of all the nodes in the current instance
 	 */
 	private Node[] nodes; 
 	
-	/*
+	/**
 	 * Symmetric matrix that represents the distance between nodes, 
 	 * where distMatrix[i][j] is the distance from the
 	 * node i to the node j
 	 */
 	private double[][] distMatrix;
 	
-	/*
+	/**
 	 * Ordered matrix of size i+1 nodes that represent the tour in the current instance
 	 */
 	private Node[] route; //Cambiar route por tour
 	
-	/*
+	/**
 	 * Cost of the tour in the current instance
 	 */
 	private double routeCost;
 	
-	/*
+	/**
 	 * The initial node of the tour
 	 */
 	private Node origin; 
 
+	private Node g;
 	
+	private int[] trucks;
 	
-	/*
+	/**
 	 * Creates an instance of the Model class
 	 * 
 	 * @param nodes Matrix of all the nodes in the current instance
@@ -44,7 +48,7 @@ public class Model{
 		this.origin = null;
 	}
 	
-	/*
+	/**
 	 * Creates an instance of the Model class
 	 * 
 	 * @param origin The initial node of the tour
@@ -199,6 +203,35 @@ public class Model{
 		return origin;
 	}
 	
+	
+	public void setG(Double x, Double y)
+	{
+		g = new Node(-1, x, y);
+	}
+	
+	public Node getG()
+	{
+		return g;
+	}
+	
+	
+	public void setTrucks(String str)
+	{
+		int[] capacities;
+		String prt[] = str.split(" ");
+		capacities = new int[prt.length];
+		for (int i = 0; i < prt.length; i++)
+		{
+			capacities[i] = Integer.parseInt(prt[i]);
+		}
+		Arrays.sort(capacities);
+		
+		trucks = capacities;
+	}
+	
+	public int[] getTrucks() { 
+		return trucks;
+		}
 	/*
 	public void displayDistMatrix() {
 		

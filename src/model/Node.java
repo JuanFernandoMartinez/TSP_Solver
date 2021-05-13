@@ -124,5 +124,31 @@ public class Node {
 	public String toString() {
 		return this.id + "";
 	}
+
+
+	public int getDemand() {
+		return demand;
+	}
+
+
+	public void setDemand(int demand) {
+		this.demand = demand;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public void setxCoord(double xCoord) {
+		this.xCoord = xCoord;
+	}
+
+
+	public void setyCoord(double yCoord) {
+		this.yCoord = yCoord;
+	}
+	
 	
 }

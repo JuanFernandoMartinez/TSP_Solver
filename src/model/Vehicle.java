@@ -23,7 +23,7 @@ public class Vehicle implements Comparable<Vehicle>{
 		return id;
 	}
 	
-	public double getCapacity() {
+	public int getCapacity() {
 		return capacity;
 	}
 	

@@ -1,0 +1,60 @@
+nodos=[	x	y	D
+A	140	50	130
+B	20	20	102
+C	30	60	98
+D	90	70	114
+E	100	20	114
+F	40	100	113
+G	130	100	141]
+
+# Camión	Capacidad
+1		336
+2		345
+3		338
+4		305
+
+
+cedi
+80	60
+
+
+sweep (con el algoritmo sweep calculamos los ángulos)
+y también ordenamos el vector de la demanda
+
+caja=0
+Para i<-1 Hasta 4 Con Paso 1 Hacer
+	Para j<-i+1 Hasta 4 Con Paso 1 Hacer
+		Si camion(j)>camion(i) Entonces
+			caja<-camion(i)
+			camion(i)<-camion(j)
+			camion(j)<-caja
+		Fin Si
+	Fin Para
+Fin Para
+
+D	114
+G	141 
+F	113
+C	98
+B	102
+E	114
+A	130
+
+metodo encontrar clusters por camión
+for j in camiones
+Capacidadrestante=CapacidadCamión[j]
+	i = lastNode
+	for i in nodos
+		if D[i]<=Capacidadrestante and nodeinroute==false
+			RutaCamion[j].add(nodo[i])
+			Capacidadrestante -= D[i]
+			nodeinroute = true
+		elif D[i]>Capacidadrestante and nodeinroute==false
+			lastNode = i
+			i = len(nodos)+1
+			break
+
+
+			
+
+

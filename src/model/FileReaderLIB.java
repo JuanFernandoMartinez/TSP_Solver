@@ -71,5 +71,57 @@ public class FileReaderLIB {
 		return model;
 		
 	}
+	
+	public Model readFile(String filename) throws IOException
+	{
+		
+		
+		String file = "data"+File.separator+filename;
+		
+		BufferedReader br = new BufferedReader(new FileReader(new File(file)));
+
+		String line = null;
+
+		for (int i = 0; i < 6; i++) {
+			line = br.readLine();
+		}
+		
+		String[] cases = line.split(" ");
+		int nodesQuantity = Integer.parseInt(cases[2]);
+		Node[] nodes = new Node[nodesQuantity];
+		
+		for (int i = 6; i<9; i++) {
+			line = br.readLine();
+		}
+		
+		line = br.readLine();
+		String[] prt = line.split(" ");
+		double x = Double.parseDouble(prt[0]);
+		double y = Double.parseDouble(prt[1]);
+		
+		String trucks = br.readLine();
+		int count = 0;
+		while (count < nodesQuantity) {
+			
+			String[] camps = line.split(" "); 
+			nodes[count] = new Node(count,Double.parseDouble(camps[1]),Double.parseDouble(camps[2]),Integer.parseInt(camps[3]));
+			
+
+			line = br.readLine();
+			count++;
+		}
+		
+		br.close();
+		
+		Model model = new Model(nodes);
+		model.setG(x, y);
+		model.setTrucks(trucks);
+		
+		
+		return model;
+		
+	}
+	
+	
 
 }
