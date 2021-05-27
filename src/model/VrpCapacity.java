@@ -3,6 +3,7 @@ package model;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
@@ -190,6 +191,45 @@ public class VrpCapacity {
 	
 	
 	
+	public VRPSolution solve()
+	{
+		VRPSolution sol = new VRPSolution();
+		
+		Route r = chooseRoute();
+		sol.setTrucks(new Vehicle[r.getTrucks()]);
+		ArrayList<Node> n = r.getNodes();
+		for (int i = 0; i < r.getTrucks(); i++)
+		{
+			Vehicle current = vehicles[i];
+			current.addNode(n.get(0));
+			n.remove(0);
+			
+			while(n.get(0).getId() != -1)
+			{
+				current.addNode(n.get(0));
+				n.remove(0);
+			}
+			current.addNode(n.get(0));
+			n.remove(0);
+			
+			sol.getTrucks()[i] = current;
+		}
+		
+		sol.setCost(r.getCost());
+		sol.setNodeList((Node[])r.getNodes().toArray());
+		
+		
+		return sol;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -198,6 +238,6 @@ public class VrpCapacity {
 		//checked - luego de hacer n iteraciones, se invierte el orden de los nodos y se hace lo mismo
 		//checked - en este array iteraremos haciendo que el primer nodo pasr a ser el último
 		//checked - La idea de esto es encontrar las rutas que menos costos generen (esto no es necesario porque el método es heuristico)
-		//asignar nodos a cada camión
+		//checked - asignar nodos a cada camión
 
 }
